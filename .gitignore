@@ -1,0 +1,42 @@
+# Pastas de backup
+backup/
+
+# Pastas temporárias de arquivos
+ACIANF + APOIADORES-20251104T182759Z-1-001/
+PATROCINADORES-20251104T182802Z-1-001/
+PATROCINADORES/
+
+# Imagens não utilizadas
+av_alberto_braune_1940.jpg
+logo - Copia.png
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos temporários
+*.tmp
+*.temp
+*~
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (caso seja adicionado futuramente)
+node_modules/
+
+# Arquivos de configuração local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
