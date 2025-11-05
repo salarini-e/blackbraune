@@ -28,8 +28,10 @@
     <div class="dashboard-container">
         <?php include __DIR__ . '/../partials/sidebar.php'; ?>
 
-        <!-- Conteúdo da página -->
-        <?= $content ?>
+        <!-- Main Content -->
+        <div class="main-content">
+            <?= $content ?>
+        </div>
     </div>
     
     <!-- JavaScript -->

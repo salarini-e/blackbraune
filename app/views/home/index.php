@@ -104,136 +104,110 @@
             <p class="section-subtitle">Três dias de cultura, música e entretenimento</p>
         </div>
         <div class="program-tabs">
-            <button class="tab-button active" data-day="dia27">Quinta (27/11)</button>
-            <button class="tab-button" data-day="dia28">Sexta (28/11)</button>
-            <button class="tab-button" data-day="dia29">Sábado (29/11)</button>
+            <?php if (!empty($programacao)): ?>
+                <?php 
+                $dates = array_keys($programacao);
+                $diasSemana = [
+                    'Sunday' => 'Dom',
+                    'Monday' => 'Seg', 
+                    'Tuesday' => 'Ter',
+                    'Wednesday' => 'Qua',
+                    'Thursday' => 'Qui',
+                    'Friday' => 'Sex',
+                    'Saturday' => 'Sáb'
+                ];
+                ?>
+                <?php foreach ($dates as $index => $date): ?>
+                    <button class="tab-button <?= $index === 0 ? 'active' : '' ?>" data-day="dia<?= $index ?>">
+                        <?= $diasSemana[date('l', strtotime($date))] ?> (<?= date('d/m', strtotime($date)) ?>)
+                    </button>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <button class="tab-button active" data-day="dia0">Em breve</button>
+            <?php endif; ?>
         </div>
         
         <div class="program-content">
-            <div id="dia27" class="program-day active">
-                <h3>Quinta-feira - 27 de Novembro</h3>
-                <div class="program-info">
-                    <p class="program-schedule"><strong>16h às 20h</strong></p>
-                    <p class="program-infrastructure">Com banheiros químicos, seguranças e palco</p>
-                </div>
-                <div class="program-grid">
-                    <div class="program-item">
-                        <div class="program-time">16:00</div>
-                        <div class="program-details">
-                            <h4>DJ</h4>
-                            <p>Música ambiente para abertura do evento</p>
+            <?php if (!empty($programacao)): ?>
+                <?php 
+                $dates = array_keys($programacao);
+                $diasSemana = [
+                    'Sunday' => 'Domingo',
+                    'Monday' => 'Segunda-feira', 
+                    'Tuesday' => 'Terça-feira',
+                    'Wednesday' => 'Quarta-feira',
+                    'Thursday' => 'Quinta-feira',
+                    'Friday' => 'Sexta-feira',
+                    'Saturday' => 'Sábado'
+                ];
+                $mesesPortugues = [
+                    'January' => 'Janeiro',
+                    'February' => 'Fevereiro',
+                    'March' => 'Março',
+                    'April' => 'Abril',
+                    'May' => 'Maio',
+                    'June' => 'Junho',
+                    'July' => 'Julho',
+                    'August' => 'Agosto',
+                    'September' => 'Setembro',
+                    'October' => 'Outubro',
+                    'November' => 'Novembro',
+                    'December' => 'Dezembro'
+                ];
+                ?>
+                <?php foreach ($dates as $index => $date): ?>
+                    <div id="dia<?= $index ?>" class="program-day <?= $index === 0 ? 'active' : '' ?>">
+                        <h3><?= $diasSemana[date('l', strtotime($date))] ?> - <?= date('d', strtotime($date)) ?> de <?= $mesesPortugues[date('F', strtotime($date))] ?></h3>
+                        <div class="program-info">
+                            <?php 
+                            $atividades = $programacao[$date];
+                            if (!empty($atividades)) {
+                                $primeiroHorario = date('H\h', strtotime($atividades[0]['horario_inicio']));
+                                $ultimoItem = end($atividades);
+                                reset($atividades); // Reset array pointer after end()
+                                $ultimoHorario = date('H\h', strtotime($ultimoItem['horario_fim'] ?: $ultimoItem['horario_inicio']));
+                                echo "<p class=\"program-schedule\"><strong>{$primeiroHorario} às {$ultimoHorario}</strong></p>";
+                            }
+                            ?>
+                            <p class="program-infrastructure">Com banheiros químicos, seguranças e palco</p>
+                        </div>
+                        <div class="program-grid">
+                            <?php foreach ($atividades as $atividade): ?>
+                                <div class="program-item">
+                                    <div class="program-time">
+                                        <?= date('H:i', strtotime($atividade['horario_inicio'])) ?>
+                                        <?php if (!empty($atividade['horario_fim'])): ?>
+                                            - <?= date('H:i', strtotime($atividade['horario_fim'])) ?>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="program-details">
+                                        <h4><?= htmlspecialchars($atividade['titulo']) ?></h4>
+                                        <?php if (!empty($atividade['descricao'])): ?>
+                                            <p><?= htmlspecialchars($atividade['descricao']) ?></p>
+                                        <?php endif; ?>
+                                        <?php if (!empty($atividade['local'])): ?>
+                                            <small><i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($atividade['local']) ?></small>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
-                    <div class="program-item">
-                        <div class="program-time">18:00</div>
-                        <div class="program-details">
-                            <h4>DJ</h4>
-                            <p>Continuação da programação musical</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="dia28" class="program-day">
-                <h3>Sexta-feira - 28 de Novembro</h3>
-                <div class="program-info">
-                    <p class="program-schedule"><strong>13h às 20h</strong></p>
-                    <p class="program-infrastructure">Com banheiros químicos, seguranças e palco</p>
-                </div>
-                <div class="program-grid">
-                    <div class="program-item">
-                        <div class="program-time">13:00</div>
-                        <div class="program-details">
-                            <h4>DJ</h4>
-                            <p>Música ambiente de abertura</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">15:00</div>
-                        <div class="program-details">
-                            <h4>DJ</h4>
-                            <p>Continuação da programação musical</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">17:00</div>
-                        <div class="program-details">
-                            <h4>Mágico Volante</h4>
-                            <p>Apresentação de mágica itinerante</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">17:00</div>
-                        <div class="program-details">
-                            <h4>Artista Solo</h4>
-                            <p>Performance musical individual</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">19:00</div>
-                        <div class="program-details">
-                            <h4>Artista Solo</h4>
-                            <p>Segunda apresentação musical individual</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">19:00</div>
-                        <div class="program-details">
-                            <h4>Dança Volante</h4>
-                            <p>Apresentação de dança itinerante</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="dia29" class="program-day">
-                <h3>Sábado - 29 de Novembro</h3>
-                <div class="program-info">
-                    <p class="program-schedule"><strong>10h às 20h</strong></p>
-                    <p class="program-infrastructure">Com banheiros químicos, seguranças e palco</p>
-                </div>
-                <div class="program-grid">
-                    <div class="program-item">
-                        <div class="program-time">10:00 - 20:00</div>
-                        <div class="program-details">
-                            <h4>9 Atrações Infantis</h4>
-                            <p>Atividades e entretenimento para crianças durante todo o dia</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">13:00</div>
-                        <div class="program-details">
-                            <h4>DJ</h4>
-                            <p>Música ambiente</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">15:00</div>
-                        <div class="program-details">
-                            <h4>DJ</h4>
-                            <p>Continuação da programação musical</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">17:00</div>
-                        <div class="program-details">
-                            <h4>Artista Solo ou Dupla</h4>
-                            <p>Apresentação musical ao vivo</p>
-                        </div>
-                    </div>
-                    <div class="program-item">
-                        <div class="program-time">19:00</div>
-                        <div class="program-details">
-                            <h4>Artista Solo ou Dupla</h4>
-                            <p>Segunda apresentação musical ao vivo</p>
-                        </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div id="dia0" class="program-day active">
+                    <div class="program-info">
+                        <p style="text-align: center; color: #666; font-style: italic; padding: 3rem;">
+                            <i class="fas fa-calendar-times" style="font-size: 3rem; margin-bottom: 1rem; display: block; color: var(--secondary-color);"></i>
+                            <strong>Programação em desenvolvimento</strong><br>
+                            Em breve mais informações serão divulgadas!
+                        </p>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
-
 <!-- Lojas Section -->
 <section id="lojas" class="lojas">
     <div class="container">
@@ -316,7 +290,9 @@
                     <li><i class="fas fa-bell"></i> Notificações sobre novas ações</li>
                 </ul>
             </div>
-            <form class="cadastro-form" id="cadastroForm">
+            <form class="cadastro-form" id="cadastroForm" method="POST" action="/newsletter/store">
+                <div id="cadastroMessage" class="alert" style="display: none;"></div>
+                
                 <div class="form-group">
                     <label for="nome">Nome Completo *</label>
                     <input type="text" id="nome" name="nome" required>
@@ -335,7 +311,7 @@
                 </div>
                 <div class="form-group">
                     <label for="interesses">Áreas de Interesse</label>
-                    <select id="interesses" name="interesses" multiple>
+                    <select id="interesses" name="interesses[]" multiple>
                         <option value="moda">Moda & Estilo</option>
                         <option value="gastronomia">Gastronomia</option>
                         <option value="tecnologia">Tecnologia</option>
@@ -358,7 +334,13 @@
                         Aceito os termos de uso e política de privacidade *
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <span class="btn-text">Cadastrar-se</span>
+                    <span class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Enviando...
+                    </span>
+                </button>
+                <input type="hidden" name="ajax" value="1">
             </form>
         </div>
     </div>
@@ -435,3 +417,102 @@
         </div>
     </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Máscara para telefone
+    const telefoneInput = document.getElementById('telefone');
+    if (telefoneInput) {
+        telefoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                } else {
+                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                }
+                e.target.value = value;
+            }
+        });
+    }
+
+    // Processamento do formulário de cadastro
+    const cadastroForm = document.getElementById('cadastroForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageDiv = document.getElementById('cadastroMessage');
+
+    if (cadastroForm) {
+        cadastroForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Mostra loading
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline';
+            submitBtn.disabled = true;
+            
+            // Esconde mensagem anterior
+            messageDiv.style.display = 'none';
+            
+            // Prepara dados do formulário
+            const formData = new FormData(cadastroForm);
+            
+            // Adiciona valores dos checkboxes corretamente
+            if (!formData.has('newsletter')) {
+                formData.delete('newsletter');
+            }
+            if (!formData.has('termos')) {
+                formData.delete('termos');
+            }
+
+            // Envia requisição AJAX
+            fetch('/newsletter/store', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Sucesso
+                    messageDiv.className = 'alert alert-success';
+                    messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> ' + data.message;
+                    messageDiv.style.display = 'block';
+                    
+                    // Limpa formulário
+                    cadastroForm.reset();
+                    document.getElementById('cidade').value = 'Nova Friburgo';
+                    document.getElementById('newsletter').checked = true;
+                    
+                    // Scroll para mensagem
+                    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                } else {
+                    // Erro
+                    messageDiv.className = 'alert alert-danger';
+                    messageDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + data.message;
+                    messageDiv.style.display = 'block';
+                    
+                    // Scroll para mensagem
+                    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                messageDiv.className = 'alert alert-danger';
+                messageDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro ao enviar cadastro. Tente novamente.';
+                messageDiv.style.display = 'block';
+            })
+            .finally(() => {
+                // Restaura botão
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                submitBtn.disabled = false;
+            });
+        });
+    }
+});
+</script>

@@ -33,6 +33,18 @@
                 </a>
             </li>
             <li class="sidebar-nav-item">
+                <a href="<?= Router::url('programacoes') ?>" class="sidebar-nav-link <?= (strpos($page, 'programacoes') !== false) ? 'active' : '' ?>">
+                    <i class="fas fa-calendar-alt"></i>
+                    Programação
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="<?= Router::url('newsletter') ?>" class="sidebar-nav-link <?= (strpos($page, 'newsletter') !== false) ? 'active' : '' ?>">
+                    <i class="fas fa-envelope"></i>
+                    Newsletter
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
                 <a href="#" class="sidebar-nav-link">
                     <i class="fas fa-store"></i>
                     Lojas

@@ -52,6 +52,29 @@ class Router
             'dashboard/usuarios/deletar' => ['controller' => 'UsuariosController', 'method' => 'deletar'],
             'dashboard/usuarios/visualizar' => ['controller' => 'UsuariosController', 'method' => 'visualizar'],
             
+            // Rotas de programação (dashboard)
+            'programacoes' => ['controller' => 'ProgramacoesController', 'method' => 'index'],
+            'programacoes/index' => ['controller' => 'ProgramacoesController', 'method' => 'index'],
+            'programacoes/create' => ['controller' => 'ProgramacoesController', 'method' => 'create'],
+            'programacoes/store' => ['controller' => 'ProgramacoesController', 'method' => 'store'],
+            'programacoes/edit' => ['controller' => 'ProgramacoesController', 'method' => 'edit'],
+            'programacoes/update' => ['controller' => 'ProgramacoesController', 'method' => 'update'],
+            'programacoes/delete' => ['controller' => 'ProgramacoesController', 'method' => 'delete'],
+            'programacoes/toggle' => ['controller' => 'ProgramacoesController', 'method' => 'toggleStatus'],
+            'programacoes/api' => ['controller' => 'ProgramacoesController', 'method' => 'api'],
+            
+            // Rotas de newsletter (dashboard)
+            'newsletter' => ['controller' => 'NewsletterController', 'method' => 'index'],
+            'newsletter/index' => ['controller' => 'NewsletterController', 'method' => 'index'],
+            'newsletter/create' => ['controller' => 'NewsletterController', 'method' => 'create'],
+            'newsletter/store' => ['controller' => 'NewsletterController', 'method' => 'store'],
+            'newsletter/edit' => ['controller' => 'NewsletterController', 'method' => 'edit'],
+            'newsletter/update' => ['controller' => 'NewsletterController', 'method' => 'update'],
+            'newsletter/delete' => ['controller' => 'NewsletterController', 'method' => 'delete'],
+            'newsletter/toggle-status' => ['controller' => 'NewsletterController', 'method' => 'toggleStatus'],
+            'newsletter/toggle-newsletter' => ['controller' => 'NewsletterController', 'method' => 'toggleNewsletter'],
+            'newsletter/export' => ['controller' => 'NewsletterController', 'method' => 'export'],
+            
             // Rotas de autenticação
             'login' => ['controller' => 'AuthController', 'method' => 'login'],
             'auth/login' => ['controller' => 'AuthController', 'method' => 'login'],
@@ -116,22 +139,52 @@ class Router
                     } else {
                         $this->currentMethod = 'index';
                     }
+                } elseif (isset($urlArray[1]) && $urlArray[1] === 'programacoes') {
+                    $this->currentController = 'ProgramacoesController';
+                    
+                    // Se tem método específico
+                    if (isset($urlArray[2]) && !empty($urlArray[2])) {
+                        $method = $urlArray[2];
+                        if (method_exists('ProgramacoesController', $method)) {
+                            $this->currentMethod = $method;
+                            // Parâmetros adicionais (como ID)
+                            $this->params = array_slice($urlArray, 3);
+                        }
+                    } else {
+                        $this->currentMethod = 'index';
+                    }
                 } else {
                     // Outras rotas do dashboard
                     $this->currentController = 'DashboardController';
                     $this->currentMethod = 'index';
                 }
             } else {
-                // Rotas gerais
+                // Rotas gerais - incluindo programacoes
                 if (!empty($urlArray[0])) {
-                    $controller = ucfirst($urlArray[0]) . 'Controller';
-                    if (class_exists($controller)) {
-                        $this->currentController = $controller;
-                        unset($urlArray[0]);
+                    if ($urlArray[0] === 'programacoes') {
+                        $this->currentController = 'ProgramacoesController';
+                        
+                        // Se tem método específico
+                        if (isset($urlArray[1]) && !empty($urlArray[1])) {
+                            $method = $urlArray[1];
+                            if (method_exists('ProgramacoesController', $method)) {
+                                $this->currentMethod = $method;
+                                // Parâmetros adicionais (como ID)
+                                $this->params = array_slice($urlArray, 2);
+                            }
+                        } else {
+                            $this->currentMethod = 'index';
+                        }
+                    } else {
+                        $controller = ucfirst($urlArray[0]) . 'Controller';
+                        if (class_exists($controller)) {
+                            $this->currentController = $controller;
+                            unset($urlArray[0]);
+                        }
                     }
                 }
                 
-                if (!empty($urlArray[1])) {
+                if (!empty($urlArray[1]) && $this->currentController !== 'ProgramacoesController') {
                     $method = $urlArray[1];
                     if (method_exists($this->currentController, $method)) {
                         $this->currentMethod = $method;
