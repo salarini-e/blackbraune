@@ -1,0 +1,437 @@
+<!-- Header -->
+<header class="header">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="<?= Router::url('assets/logo.png') ?>" style="max-width: 160px; width: 100%;" alt="">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Início</a></li>
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#programacao" class="nav-link">Programação</a></li>
+                <li><a href="#lojas" class="nav-link">Lojas</a></li>
+                <li><a href="#patrocinadores" class="nav-link">Patrocinadores</a></li>
+                <li><a href="#cadastro" class="nav-link">Cadastro</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="<?= Router::url('assets/logo.png') ?>" alt="Logo Black Braune" class="hero-logo-img">                    
+            </div>
+            
+            <div class="event-dates">
+                <h2>27, 28 e 29 de Novembro</h2>
+                
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img src="<?= Router::url('assets/logo_centro_vivo_acianf.png') ?>" style="width: 300px; margin-bottom: 20px;" alt="">
+                <a href="#about" class="scroll-down-btn">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container" style="padding-top: 60px;">
+        <div class="section-header">
+            <h2 class="section-title">
+
+            </h2>
+            <p class="section-subtitle">Uma iniciativa para revitalizar o coração comercial de Nova Friburgo</p>
+        </div>
+        
+        <div class="about-intro">
+            <p class="about-intro-text">
+                <strong>A Avenida Alberto Braune é, desde os anos 60, o principal centro comercial de Nova Friburgo.</strong>
+                Hoje, apesar de continuar sendo a principal via do centro da cidade, ela perdeu parte do seu protagonismo. O fluxo de turistas é direcionado para outras localidades e até mesmo os moradores deixam de consumir em suas lojas e restaurantes.
+            </p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Objetivos do Black Braune</h3>
+                <ul class="objectives-list">
+                    <li><i class="fas fa-check-circle"></i> Revitalizar a Avenida Alberto Braune</li>
+                    <li><i class="fas fa-check-circle"></i> Fortalecer o comércio local</li>
+                    <li><i class="fas fa-check-circle"></i> Valorizar empreendedores friburguenses</li>
+                    <li><i class="fas fa-check-circle"></i> Promover cultura e entretenimento</li>
+                    <li><i class="fas fa-check-circle"></i> Conectar empresários e consumidores</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <img src="<?= Router::url('assets/av_alberto_braune.png') ?>" alt="Avenida Alberto Braune" class="historical-image">
+                <!-- <p class="image-caption">Avenida Alberto Braune nos anos 1940</p> -->
+            </div>
+        </div>
+
+        <div class="about-partners">
+            <h3>Parceiros</h3>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <img src="<?= Router::url('assets/logo_acianf.png') ?>" alt="ACIANF - Associação Comercial, Industrial e Agrícola de Nova Friburgo" class="partner-logo">
+                </div>
+                <div class="partner-card">
+                    <img src="<?= Router::url('assets/logo_pmnf.png') ?>" alt="Prefeitura Municipal de Nova Friburgo" class="partner-logo">
+                </div>
+                <div class="partner-card">
+                    <img src="<?= Router::url('assets/logo_sebrae.png') ?>" alt="Sebrae - Apoio Institucional" class="partner-logo">
+                </div>                    
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Programação Section -->
+<section id="programacao" class="programacao">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Programação Completa</h2>
+            <p class="section-subtitle">Três dias de cultura, música e entretenimento</p>
+        </div>
+        <div class="program-tabs">
+            <button class="tab-button active" data-day="dia27">Quinta (27/11)</button>
+            <button class="tab-button" data-day="dia28">Sexta (28/11)</button>
+            <button class="tab-button" data-day="dia29">Sábado (29/11)</button>
+        </div>
+        
+        <div class="program-content">
+            <div id="dia27" class="program-day active">
+                <h3>Quinta-feira - 27 de Novembro</h3>
+                <div class="program-info">
+                    <p class="program-schedule"><strong>16h às 20h</strong></p>
+                    <p class="program-infrastructure">Com banheiros químicos, seguranças e palco</p>
+                </div>
+                <div class="program-grid">
+                    <div class="program-item">
+                        <div class="program-time">16:00</div>
+                        <div class="program-details">
+                            <h4>DJ</h4>
+                            <p>Música ambiente para abertura do evento</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">18:00</div>
+                        <div class="program-details">
+                            <h4>DJ</h4>
+                            <p>Continuação da programação musical</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="dia28" class="program-day">
+                <h3>Sexta-feira - 28 de Novembro</h3>
+                <div class="program-info">
+                    <p class="program-schedule"><strong>13h às 20h</strong></p>
+                    <p class="program-infrastructure">Com banheiros químicos, seguranças e palco</p>
+                </div>
+                <div class="program-grid">
+                    <div class="program-item">
+                        <div class="program-time">13:00</div>
+                        <div class="program-details">
+                            <h4>DJ</h4>
+                            <p>Música ambiente de abertura</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">15:00</div>
+                        <div class="program-details">
+                            <h4>DJ</h4>
+                            <p>Continuação da programação musical</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">17:00</div>
+                        <div class="program-details">
+                            <h4>Mágico Volante</h4>
+                            <p>Apresentação de mágica itinerante</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">17:00</div>
+                        <div class="program-details">
+                            <h4>Artista Solo</h4>
+                            <p>Performance musical individual</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">19:00</div>
+                        <div class="program-details">
+                            <h4>Artista Solo</h4>
+                            <p>Segunda apresentação musical individual</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">19:00</div>
+                        <div class="program-details">
+                            <h4>Dança Volante</h4>
+                            <p>Apresentação de dança itinerante</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dia29" class="program-day">
+                <h3>Sábado - 29 de Novembro</h3>
+                <div class="program-info">
+                    <p class="program-schedule"><strong>10h às 20h</strong></p>
+                    <p class="program-infrastructure">Com banheiros químicos, seguranças e palco</p>
+                </div>
+                <div class="program-grid">
+                    <div class="program-item">
+                        <div class="program-time">10:00 - 20:00</div>
+                        <div class="program-details">
+                            <h4>9 Atrações Infantis</h4>
+                            <p>Atividades e entretenimento para crianças durante todo o dia</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">13:00</div>
+                        <div class="program-details">
+                            <h4>DJ</h4>
+                            <p>Música ambiente</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">15:00</div>
+                        <div class="program-details">
+                            <h4>DJ</h4>
+                            <p>Continuação da programação musical</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">17:00</div>
+                        <div class="program-details">
+                            <h4>Artista Solo ou Dupla</h4>
+                            <p>Apresentação musical ao vivo</p>
+                        </div>
+                    </div>
+                    <div class="program-item">
+                        <div class="program-time">19:00</div>
+                        <div class="program-details">
+                            <h4>Artista Solo ou Dupla</h4>
+                            <p>Segunda apresentação musical ao vivo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lojas Section -->
+<section id="lojas" class="lojas">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Lojas Participantes</h2>
+            <p class="section-subtitle">Conheça os estabelecimentos que fazem parte do movimento</p>
+        </div>
+        <div class="lojas-grid">
+            <div class="loja-card">
+                <div class="loja-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>Moda & Estilo</h3>
+                <p>Boutiques e lojas de vestuário</p>
+                <a href="#" class="loja-link">Ver Lojas</a>
+            </div>
+            <div class="loja-card">
+                <div class="loja-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Gastronomia</h3>
+                <p>Restaurantes e cafeterias</p>
+                <a href="#" class="loja-link">Ver Estabelecimentos</a>
+            </div>
+            <div class="loja-card">
+                <div class="loja-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>Tecnologia</h3>
+                <p>Lojas de eletrônicos e informática</p>
+                <a href="#" class="loja-link">Ver Lojas</a>
+            </div>
+            <div class="loja-card">
+                <div class="loja-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>Beleza & Bem-estar</h3>
+                <p>Salões e clínicas estéticas</p>
+                <a href="#" class="loja-link">Ver Estabelecimentos</a>
+            </div>
+            <div class="loja-card">
+                <div class="loja-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Casa & Decoração</h3>
+                <p>Móveis e artigos para casa</p>
+                <a href="#" class="loja-link">Ver Lojas</a>
+            </div>
+            <div class="loja-card">
+                <div class="loja-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h3>Variedades</h3>
+                <p>Diversos produtos e serviços</p>
+                <a href="#" class="loja-link">Ver Todos</a>
+            </div>
+        </div>
+        <div class="lojas-cta">
+            <p>Sua loja ainda não está participando?</p>
+            <a href="#cadastro" class="btn btn-secondary" style="background-color: var(--secondary-color); color: var(--primary-color);">Cadastre sua Loja</a>
+        </div>
+    </div>
+</section>
+
+<!-- Cadastro Section -->
+<section id="cadastro" class="cadastro">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Cadastre-se</h2>
+            <p class="section-subtitle">Receba novidades, promoções e informações exclusivas</p>
+        </div>
+        <div class="cadastro-content">
+            <div class="cadastro-info">
+                <h3>Por que se cadastrar?</h3>
+                <ul class="benefits-list">
+                    <li><i class="fas fa-envelope"></i> Receba novidades do movimento</li>
+                    <li><i class="fas fa-percent"></i> Promoções exclusivas das lojas</li>
+                    <li><i class="fas fa-calendar"></i> Programação atualizada dos eventos</li>
+                    <li><i class="fas fa-gift"></i> Ofertas especiais dos parceiros</li>
+                    <li><i class="fas fa-bell"></i> Notificações sobre novas ações</li>
+                </ul>
+            </div>
+            <form class="cadastro-form" id="cadastroForm">
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" name="cidade" value="Nova Friburgo">
+                </div>
+                <div class="form-group">
+                    <label for="interesses">Áreas de Interesse</label>
+                    <select id="interesses" name="interesses" multiple>
+                        <option value="moda">Moda & Estilo</option>
+                        <option value="gastronomia">Gastronomia</option>
+                        <option value="tecnologia">Tecnologia</option>
+                        <option value="beleza">Beleza & Bem-estar</option>
+                        <option value="casa">Casa & Decoração</option>
+                        <option value="cultura">Cultura & Eventos</option>
+                    </select>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="newsletter" name="newsletter" checked>
+                        <span class="checkmark"></span>
+                        Quero receber newsletter com novidades e promoções
+                    </label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <span class="checkmark"></span>
+                        Aceito os termos de uso e política de privacidade *
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Patrocinadores Oficiais Section -->
+<section id="patrocinadores" class="patrocinadores">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Patrocinadores Oficiais</h2>
+            <p class="section-subtitle">Empresas que apoiam e investem no movimento Black Braune</p>
+        </div>
+        <div class="patrocinadores-grid">
+            <div class="patrocinador-logo">
+                <img src="<?= Router::url('assets/patrocinadores/FRIONLINE COLORIDA.png') ?>" alt="Frionline - Patrocinador Oficial">
+            </div>
+
+            <div class="patrocinador-logo">
+                <img src="<?= Router::url('assets/patrocinadores/GRUPO SAF COLORIDA.png') ?>" alt="Grupo SAF - Patrocinador Oficial">
+            </div>
+
+            <div class="patrocinador-logo">
+                <img src="<?= Router::url('assets/patrocinadores/SICREDI COLORIDA.png') ?>" alt="Sicredi - Patrocinador Oficial">
+            </div>
+
+            <div class="patrocinador-logo">
+                <img src="<?= Router::url('assets/patrocinadores/UNIMED SERRANA.png') ?>" alt="Unimed Serrana - Patrocinador Oficial">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Black Braune</h3>
+                <p>Movimento de revitalização da Avenida Alberto Braune, fortalecendo o comércio local de Nova Friburgo.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Avenida Alberto Braune, Centro<br>Nova Friburgo - RJ</p>
+                <p><i class="fas fa-envelope"></i> contato@blackbraune.com.br</p>
+                <p><i class="fas fa-phone"></i> (22) 99999-9999</p>
+            </div>
+            <div class="footer-section">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li>ACIANF</li>
+                    <li>Prefeitura de Nova Friburgo</li>
+                    <li>Sebrae</li>
+                    <li>Núcleo Setorial Centro Vivo</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2025 Black Braune. Todos os direitos reservados.</p>
+                <div class="developer-credit">
+                    <span>Desenvolvido por:</span>
+                    <img src="<?= Router::url('assets/logo_com_pmnf.png') ?>" alt="Ponti" class="developer-logo">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,55 @@
+# Configurações do Sistema Black Braune - Desenvolvimento
+
+# Configurações da aplicação
+app:
+  name: "Black Braune"
+  version: "1.0.0"
+  debug: true
+  timezone: "America/Sao_Paulo"
+
+# Configurações de URL
+url:
+  base: "http://localhost:8000/"
+  assets: "http://localhost:8000/assets/"
+
+# Configurações de banco de dados
+database:
+  # Opções: sqlite, mysql
+  driver: "sqlite"
+  
+  # Configurações MySQL (usar quando driver = mysql)
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "black_braune"
+    username: "root"
+    password: ""
+    charset: "utf8mb4"
+    
+  # Configurações SQLite (usar quando driver = sqlite)
+  sqlite:
+    file: "database/black_braune.db"
+    
+# Configurações de sessão
+session:
+  lifetime: 86400  # 24 horas em segundos
+  name: "BLACK_BRAUNE_SESSION"
+  
+# Configurações de upload
+upload:
+  max_size: 5242880  # 5MB em bytes
+  allowed_types:
+    - "image/jpeg"
+    - "image/png" 
+    - "image/gif"
+  parceiros_path: "assets/uploads/parceiros/"
+  
+# Configurações de email (para futuro)
+email:
+  driver: "smtp"
+  host: "smtp.gmail.com"
+  port: 587
+  username: ""
+  password: ""
+  from_address: "noreply@blackbraune.org.br"
+  from_name: "Black Braune"
