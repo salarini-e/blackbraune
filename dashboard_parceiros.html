@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Parceiros - Black Braune</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Design System - Black Braune */
+        :root {
+            /* Colors */
+            --primary-color: #FFC53A;
+            --secondary-color: #E6A201;
+            --dark-color: #000000;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --text-light: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --text-soft: rgba(255, 255, 255, 0.5);
+            
+            /* Glass Effects */
+            --glass-bg: rgba(0, 0, 0, 0.7);
+            --glass-border: rgba(255, 197, 58, 0.2);
+            --glass-blur: blur(20px);
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 0.75rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            
+            /* Typography */
+            --font-family: 'Poppins', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px rgba(255, 197, 58, 0.3);
+            
+            /* Transitions */
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: 
+                "sidebar header"
+                "sidebar main";
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            grid-area: sidebar;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border-right: 1px solid var(--glass-border);
+            padding: var(--spacing-xl);
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .sidebar-brand img {
+            width: 50px;
+            height: auto;
+        }
+
+        .sidebar-brand h2 {
+            color: var(--primary-color);
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav-item {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .sidebar-nav-link:hover,
+        .sidebar-nav-link.active {
+            background: rgba(255, 197, 58, 0.1);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .sidebar-nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            grid-area: header;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title h1 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .header-title p {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .btn {
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-family);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            grid-area: main;
+            padding: var(--spacing-xl);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+        }
+
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        /* Parceiros Table */
+        .parceiros-section {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table th {
+            background: rgba(255, 197, 58, 0.1);
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table td {
+            color: var(--text-light);
+        }
+
+        .table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .parceiro-logo {
+            width: 60px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .status {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status.ativo {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+
+        .status.pendente {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .status.inativo {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+
+        .actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-sm {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            font-size: var(--font-size-xs);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+        }
+
+        /* Search Bar */
+        .search-bar {
+            position: relative;
+            max-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            color: var(--text-light);
+            font-family: var(--font-family);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 197, 58, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "main";
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                align-items: stretch;
+            }
+
+            .table-container {
+                font-size: var(--font-size-sm);
+            }
+
+            .parceiro-logo {
+                width: 40px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="assets/logo.png" alt="Black Braune">
+                <h2>Black Braune</h2>
+            </div>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-item">
+                        <a href="dashboard.html" class="sidebar-nav-link">
+                            <i class="fas fa-chart-bar"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="dashboard_parceiros.html" class="sidebar-nav-link active">
+                            <i class="fas fa-handshake"></i>
+                            Parceiros
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-store"></i>
+                            Lojas
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-users"></i>
+                            Usuários
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-calendar"></i>
+                            Eventos
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-bullhorn"></i>
+                            Campanhas
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-nav-link">
+                            <i class="fas fa-cog"></i>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <h1>Gestão de Parceiros</h1>
+                <p>Gerencie parceiros e patrocinadores do movimento Black Braune</p>
+            </div>
+            <div class="header-actions">
+                <a href="dashboard_parceiros_cadastro.html" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Novo Parceiro
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Total de Parceiros</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Parceiros Ativos</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Aguardando Aprovação</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Patrocinadores Oficiais</div>
+                </div>
+            </div>
+
+            <!-- Parceiros Table -->
+            <div class="parceiros-section">
+                <div class="section-header">
+                    <h2 class="section-title">Lista de Parceiros</h2>
+                    <div class="search-bar">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Buscar parceiro...">
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Logo</th>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Categoria</th>
+                                <th>Status</th>
+                                <th>Data Cadastro</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="assets/logo_acianf.png" alt="ACIANF" class="parceiro-logo">
+                                </td>
+                                <td>ACIANF</td>
+                                <td>Parceiro Institucional</td>
+                                <td>Associação Comercial</td>
+                                <td><span class="status ativo">Ativo</span></td>
+                                <td>01/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/logo_pmnf.png" alt="Prefeitura" class="parceiro-logo">
+                                </td>
+                                <td>Prefeitura de Nova Friburgo</td>
+                                <td>Parceiro Público</td>
+                                <td>Governo Municipal</td>
+                                <td><span class="status ativo">Ativo</span></td>
+                                <td>01/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/logo_sebrae.png" alt="Sebrae" class="parceiro-logo">
+                                </td>
+                                <td>Sebrae RJ</td>
+                                <td>Parceiro Institucional</td>
+                                <td>Apoio Empresarial</td>
+                                <td><span class="status ativo">Ativo</span></td>
+                                <td>01/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/patrocinadores/FRIONLINE COLORIDA.png" alt="Frionline" class="parceiro-logo">
+                                </td>
+                                <td>Frionline</td>
+                                <td>Patrocinador Oficial</td>
+                                <td>Refrigeração</td>
+                                <td><span class="status ativo">Ativo</span></td>
+                                <td>02/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/patrocinadores/GRUPO SAF COLORIDA.png" alt="Grupo SAF" class="parceiro-logo">
+                                </td>
+                                <td>Grupo SAF</td>
+                                <td>Patrocinador Oficial</td>
+                                <td>Serviços Financeiros</td>
+                                <td><span class="status ativo">Ativo</span></td>
+                                <td>02/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/patrocinadores/SICREDI COLORIDA.png" alt="Sicredi" class="parceiro-logo">
+                                </td>
+                                <td>Sicredi</td>
+                                <td>Patrocinador Oficial</td>
+                                <td>Cooperativa de Crédito</td>
+                                <td><span class="status ativo">Ativo</span></td>
+                                <td>02/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/patrocinadores/UNIMED SERRANA.png" alt="Unimed" class="parceiro-logo">
+                                </td>
+                                <td>Unimed Serrana</td>
+                                <td>Patrocinador Oficial</td>
+                                <td>Plano de Saúde</td>
+                                <td><span class="status pendente">Pendente</span></td>
+                                <td>03/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="assets/logo_com_pmnf.png" alt="Ponti" class="parceiro-logo">
+                                </td>
+                                <td>Ponti Desenvolvimento</td>
+                                <td>Parceiro Técnico</td>
+                                <td>Tecnologia</td>
+                                <td><span class="status ativo">Ativo</span></td>
+                                <td>04/11/2025</td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="dashboard_parceiros_edicao.html" class="btn btn-outline btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="btn btn-outline btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.table tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Active navigation
+        document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    
