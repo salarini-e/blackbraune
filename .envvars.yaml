@@ -9,8 +9,8 @@ app:
 
 # Configurações de URL
 url:
-  base: "http://localhost:8000/"
-  assets: "http://localhost:8000/assets/"
+  base: "https://blackbraune.esalarini.com.br/"
+  assets: "https://blackbraune.esalarini.com.br/assets/"
 
 # Configurações de banco de dados
 database:
