@@ -44,12 +44,12 @@
                     Newsletter
                 </a>
             </li>
-            <li class="sidebar-nav-item">
+            <!-- <li class="sidebar-nav-item">
                 <a href="#" class="sidebar-nav-link">
                     <i class="fas fa-store"></i>
                     Lojas
                 </a>
-            </li>
+            </li> -->
             <li class="sidebar-nav-item">
                 <a href="<?= Router::url('dashboard/usuarios') ?>" class="sidebar-nav-link <?= (strpos($page, 'usuarios') !== false) ? 'active' : '' ?>">
                     <i class="fas fa-users"></i>
@@ -57,12 +57,12 @@
                 </a>
             </li>            
             
-            <li class="sidebar-nav-item">
+            <!-- <li class="sidebar-nav-item">
                 <a href="#" class="sidebar-nav-link">
                     <i class="fas fa-images"></i>
                     Galeria
                 </a>
-            </li>
+            </li> -->
         
             <li class="sidebar-nav-item sidebar-divider">
                 <a href="<?= Router::url() ?>" class="sidebar-nav-link">
@@ -70,12 +70,12 @@
                     Site Principal
                 </a>
             </li>
-                <li class="sidebar-nav-item">
+            <!-- <li class="sidebar-nav-item">
                 <a href="#" class="sidebar-nav-link">
                     <i class="fas fa-cog"></i>
                     Configurações
                 </a>
-            </li>
+            </li> -->
             <li class="sidebar-nav-item">
                 <a href="<?= Router::url('logout') ?>" class="sidebar-nav-link" onclick="return confirm('Tem certeza que deseja sair?')">
                     <i class="fas fa-sign-out-alt"></i>
