@@ -32,12 +32,12 @@ database:
     
 # Configurações de sessão
 session:
-  lifetime: 86400  # 24 horas em segundos
+  lifetime: 86400
   name: "BLACK_BRAUNE_SESSION"
   
 # Configurações de upload
 upload:
-  max_size: 5242880  # 5MB em bytes
+  max_size: 5242880
   allowed_types:
     - "image/jpeg"
     - "image/png" 
