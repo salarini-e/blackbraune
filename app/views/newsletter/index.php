@@ -1,13 +1,81 @@
+<style>
+/* Responsividade para Newsletter */
+@media (max-width: 768px) {
+    /* Header responsivo */
+    .content-header > div > div {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+    
+    /* Estatísticas responsivas */
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    }
+    
+    /* Header do card responsivo */
+    .card-header-flex {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+    
+    .card-header-flex .card-tools {
+        margin-top: 0 !important;
+        width: 100%;
+    }
+    
+    /* Filtros responsivos */
+    .filters-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .filters-inner-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .filters-buttons {
+        justify-content: stretch !important;
+    }
+    
+    .filters-buttons > * {
+        flex: 1 !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .filters-buttons {
+        flex-direction: column !important;
+    }
+    
+    .filters-buttons > * {
+        width: 100% !important;
+    }
+}
+</style>
+
 <div class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1><i class="fas fa-envelope-open-text"></i> Newsletter & Cadastros</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+            <div style="flex: 1;">
+                <h1 style="margin: 0; font-size: 1.8rem; font-weight: 600;">
+                    <i class="fas fa-envelope-open-text" style="margin-right: 10px;"></i> Newsletter & Cadastros
+                </h1>
             </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Newsletter</li>
+            <div style="flex-shrink: 0;">
+                <ol class="breadcrumb" style="display: flex; list-style: none; margin: 0; padding: 0; background: transparent;">
+                    <li class="breadcrumb-item" style="margin-right: 0.5rem;">
+                        <a href="/dashboard" style="text-decoration: none; font-weight: 500;">Dashboard</a>
+                        <span style="margin: 0 0.5rem;">/</span>
+                    </li>
+                    <li class="breadcrumb-item active" style="font-weight: 500;">Newsletter</li>
                 </ol>
             </div>
         </div>
@@ -34,49 +102,44 @@
         <?php endif; ?>
 
         <!-- Estatísticas -->
-        <div class="row">
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h3><?= $estatisticas['total'] ?? 0 ?></h3>
-                        <p>Total de Cadastros</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-users"></i>
-                    </div>
+        <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+            <div class="small-box bg-info" style="border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 120px;">
+                <div class="inner" style="position: relative; z-index: 2;">
+                    <h3 style="font-size: 2.2rem; font-weight: bold; margin: 0 0 0.5rem 0; line-height: 1;"><?= $estatisticas['total'] ?? 0 ?></h3>
+                    <p style="margin: 0; font-size: 0.95rem; font-weight: 500;">Total de Cadastros</p>
+                </div>
+                <div class="icon" style="position: absolute; top: 20px; right: 20px; font-size: 3.5rem; opacity: 0.2; z-index: 1;">
+                    <i class="fas fa-users"></i>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-success">
-                    <div class="inner">
-                        <h3><?= $estatisticas['ativos'] ?? 0 ?></h3>
-                        <p>Cadastros Ativos</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-user-check"></i>
-                    </div>
+            
+            <div class="small-box bg-success" style="border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 120px;">
+                <div class="inner" style="position: relative; z-index: 2;">
+                    <h3 style="font-size: 2.2rem; font-weight: bold; margin: 0 0 0.5rem 0; line-height: 1;"><?= $estatisticas['ativos'] ?? 0 ?></h3>
+                    <p style="margin: 0; font-size: 0.95rem; font-weight: 500;">Cadastros Ativos</p>
+                </div>
+                <div class="icon" style="position: absolute; top: 20px; right: 20px; font-size: 3.5rem; opacity: 0.2; z-index: 1;">
+                    <i class="fas fa-user-check"></i>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3><?= $estatisticas['newsletter'] ?? 0 ?></h3>
-                        <p>Newsletter Ativa</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
+            
+            <div class="small-box bg-warning" style="border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 120px;">
+                <div class="inner" style="position: relative; z-index: 2;">
+                    <h3 style="font-size: 2.2rem; font-weight: bold; margin: 0 0 0.5rem 0; line-height: 1;"><?= $estatisticas['newsletter'] ?? 0 ?></h3>
+                    <p style="margin: 0; font-size: 0.95rem; font-weight: 500;">Newsletter Ativa</p>
+                </div>
+                <div class="icon" style="position: absolute; top: 20px; right: 20px; font-size: 3.5rem; opacity: 0.2; z-index: 1;">
+                    <i class="fas fa-envelope"></i>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3><?= isset($estatisticas['por_mes']) ? count($estatisticas['por_mes']) : 0 ?></h3>
-                        <p>Meses Ativos</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+            
+            <div class="small-box bg-danger" style="border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); min-height: 120px;">
+                <div class="inner" style="position: relative; z-index: 2;">
+                    <h3 style="font-size: 2.2rem; font-weight: bold; margin: 0 0 0.5rem 0; line-height: 1;"><?= isset($estatisticas['por_mes']) ? count($estatisticas['por_mes']) : 0 ?></h3>
+                    <p style="margin: 0; font-size: 0.95rem; font-weight: 500;">Meses Ativos</p>
+                </div>
+                <div class="icon" style="position: absolute; top: 20px; right: 20px; font-size: 3.5rem; opacity: 0.2; z-index: 1;">
+                    <i class="fas fa-chart-line"></i>
                 </div>
             </div>
         </div>
@@ -85,34 +148,41 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-table"></i> Gerenciar Cadastros</h3>
-                        <div class="card-tools">
-                            <a href="/newsletter/create" class="btn btn-primary btn-sm">
-                                <i class="fas fa-plus"></i> Novo Cadastro
+                    <div class="card-header card-header-flex" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <h3 class="card-title" style="margin: 0; display: flex; align-items: center;">
+                            <i class="fas fa-table" style="margin-right: 8px;"></i> Gerenciar Cadastros
+                        </h3>
+                        <div class="card-tools" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                            <a href="/newsletter/create" class="btn btn-primary btn-sm" style="display: inline-flex; align-items: center;">
+                                <i class="fas fa-plus" style="margin-right: 6px;"></i> Novo Cadastro
                             </a>
-                            <a href="/newsletter/export" class="btn btn-success btn-sm">
-                                <i class="fas fa-download"></i> Exportar CSV
+                            <a href="/newsletter/export" class="btn btn-success btn-sm" style="display: inline-flex; align-items: center;">
+                                <i class="fas fa-download" style="margin-right: 6px;"></i> Exportar CSV
                             </a>
                         </div>
                     </div>
                     
                     <div class="card-body">
                         <!-- Filtros -->
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <form method="GET" class="row">
-                                    <div class="col-md-4 mb-2">
+                        <div style="margin-bottom: 1.5rem;">
+                            <form method="GET" class="filters-grid" style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: end;">
+                                <div class="filters-inner-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: end;">
+                                    <div style="position: relative;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem;">Buscar</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
                                             </div>
-                                            <input type="text" name="search" class="form-control" 
+                                            <input type="text" name="search" class="form-control"
                                                    placeholder="Buscar por nome, email ou cidade..." 
                                                    value="<?= htmlspecialchars($search ?? '') ?>">
                                         </div>
                                     </div>
-                                    <div class="col-md-3 mb-2">
+                                    
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem;">Status</label>
                                         <select name="status" class="form-control">
                                             <option value="">Todos os status</option>
                                             <option value="ativos" <?= ($status ?? '') === 'ativos' ? 'selected' : '' ?>>Apenas Ativos</option>
@@ -120,18 +190,19 @@
                                             <option value="inativos" <?= ($status ?? '') === 'inativos' ? 'selected' : '' ?>>Inativos</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mb-2">
-                                        <button type="submit" class="btn btn-secondary">
-                                            <i class="fas fa-search"></i> Filtrar
-                                        </button>
-                                        <?php if (($search ?? '') || ($status ?? '')): ?>
-                                            <a href="/newsletter" class="btn btn-outline-secondary ml-1">
-                                                <i class="fas fa-times"></i> Limpar
-                                            </a>
-                                        <?php endif; ?>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                                
+                                <div class="filters-buttons" style="display: flex; gap: 0.5rem; align-items: end;">
+                                    <button type="submit" class="btn btn-secondary">
+                                        <i class="fas fa-search" style="margin-right: 6px;"></i> Filtrar
+                                    </button>
+                                    <?php if (($search ?? '') || ($status ?? '')): ?>
+                                        <a href="/newsletter" class="btn btn-outline-secondary">
+                                            <i class="fas fa-times" style="margin-right: 6px;"></i> Limpar
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </form>
                         </div>
 
                         <!-- Tabela -->

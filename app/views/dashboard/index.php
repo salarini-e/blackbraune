@@ -111,25 +111,5 @@
         </div>
     </div>
 
-    <div class="quick-actions">
-        <h3>Ações Rápidas</h3>
-        <div class="actions-grid">
-            <a href="<?= Router::url('dashboard/parceiros/cadastro') ?>" class="action-btn primary">
-                <i class="fas fa-plus"></i>
-                <span>Novo Parceiro</span>
-            </a>
-            <a href="<?= Router::url('dashboard/parceiros') ?>" class="action-btn secondary">
-                <i class="fas fa-list"></i>
-                <span>Listar Parceiros</span>
-            </a>
-            <a href="<?= Router::url('dashboard/configuracoes') ?>" class="action-btn tertiary">
-                <i class="fas fa-cog"></i>
-                <span>Configurações</span>
-            </a>
-            <a href="<?= Router::url('dashboard/relatorios') ?>" class="action-btn info">
-                <i class="fas fa-chart-bar"></i>
-                <span>Relatórios</span>
-            </a>
-        </div>
-    </div>
+    
 </div>

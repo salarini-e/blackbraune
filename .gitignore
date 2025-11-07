@@ -1,6 +1,6 @@
 # Pastas de backup
 backup/
-
+database/
 # Pastas temporárias de arquivos
 ACIANF + APOIADORES-20251104T182759Z-1-001/
 PATROCINADORES-20251104T182802Z-1-001/
@@ -13,7 +13,7 @@ logo - Copia.png
 # Arquivos do sistema
 .DS_Store
 Thumbs.db
-
+black_braune.db
 # Logs
 *.log
 npm-debug.log*
