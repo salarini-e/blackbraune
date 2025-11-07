@@ -61,29 +61,22 @@
 }
 </style>
 
-<div class="content-header">
-    <div class="container-fluid">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
-            <div style="flex: 1;">
-                <h1 style="margin: 0; font-size: 1.8rem; font-weight: 600;">
-                    <i class="fas fa-envelope-open-text" style="margin-right: 10px;"></i> Newsletter & Cadastros
-                </h1>
+<div class="main-content">
+    <div class="dashboard-main">
+        <div class="page-header">
+            <div class="header-left">
+                <h1><i class="fas fa-envelope-open-text" style="margin-right: 10px;"></i> Newsletter & Cadastros</h1>
+                <p>Gerencie os cadastros de newsletter e contatos</p>
             </div>
-            <div style="flex-shrink: 0;">
-                <ol class="breadcrumb" style="display: flex; list-style: none; margin: 0; padding: 0; background: transparent;">
-                    <li class="breadcrumb-item" style="margin-right: 0.5rem;">
-                        <a href="/dashboard" style="text-decoration: none; font-weight: 500;">Dashboard</a>
-                        <span style="margin: 0 0.5rem;">/</span>
-                    </li>
-                    <li class="breadcrumb-item active" style="font-weight: 500;">Newsletter</li>
-                </ol>
+            <div class="header-right">
+                <a href="/newsletter/create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Novo Cadastro
+                </a>
+                <a href="/newsletter/export" class="btn btn-success">
+                    <i class="fas fa-download"></i> Exportar CSV
+                </a>
             </div>
         </div>
-    </div>
-</div>
-
-<section class="content">
-    <div class="container-fluid">
         <!-- Alertas -->
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success alert-dismissible">
@@ -145,84 +138,67 @@
         </div>
 
         <!-- Card Principal -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header card-header-flex" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                        <h3 class="card-title" style="margin: 0; display: flex; align-items: center;">
-                            <i class="fas fa-table" style="margin-right: 8px;"></i> Gerenciar Cadastros
-                        </h3>
-                        <div class="card-tools" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <a href="/newsletter/create" class="btn btn-primary btn-sm" style="display: inline-flex; align-items: center;">
-                                <i class="fas fa-plus" style="margin-right: 6px;"></i> Novo Cadastro
-                            </a>
-                            <a href="/newsletter/export" class="btn btn-success btn-sm" style="display: inline-flex; align-items: center;">
-                                <i class="fas fa-download" style="margin-right: 6px;"></i> Exportar CSV
-                            </a>
+        <div class="table-container">
+            <div class="table-filters">
+                <div class="filter-group">
+                                <form method="GET" class="filters-grid" style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: end;">
+                    <div class="filters-inner-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: end;">
+                        <div style="position: relative;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem;">Buscar</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                                <input type="text" name="search" class="form-control"
+                                       placeholder="Buscar por nome, email ou cidade..." 
+                                       value="<?= htmlspecialchars($search ?? '') ?>">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem;">Status</label>
+                            <select name="status" class="form-control">
+                                <option value="">Todos os status</option>
+                                <option value="ativos" <?= ($status ?? '') === 'ativos' ? 'selected' : '' ?>>Apenas Ativos</option>
+                                <option value="newsletter" <?= ($status ?? '') === 'newsletter' ? 'selected' : '' ?>>Newsletter Ativa</option>
+                                <option value="inativos" <?= ($status ?? '') === 'inativos' ? 'selected' : '' ?>>Inativos</option>
+                            </select>
                         </div>
                     </div>
                     
-                    <div class="card-body">
-                        <!-- Filtros -->
-                        <div style="margin-bottom: 1.5rem;">
-                            <form method="GET" class="filters-grid" style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: end;">
-                                <div class="filters-inner-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: end;">
-                                    <div style="position: relative;">
-                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem;">Buscar</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" name="search" class="form-control"
-                                                   placeholder="Buscar por nome, email ou cidade..." 
-                                                   value="<?= htmlspecialchars($search ?? '') ?>">
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem;">Status</label>
-                                        <select name="status" class="form-control">
-                                            <option value="">Todos os status</option>
-                                            <option value="ativos" <?= ($status ?? '') === 'ativos' ? 'selected' : '' ?>>Apenas Ativos</option>
-                                            <option value="newsletter" <?= ($status ?? '') === 'newsletter' ? 'selected' : '' ?>>Newsletter Ativa</option>
-                                            <option value="inativos" <?= ($status ?? '') === 'inativos' ? 'selected' : '' ?>>Inativos</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="filters-buttons" style="display: flex; gap: 0.5rem; align-items: end;">
-                                    <button type="submit" class="btn btn-secondary">
-                                        <i class="fas fa-search" style="margin-right: 6px;"></i> Filtrar
-                                    </button>
-                                    <?php if (($search ?? '') || ($status ?? '')): ?>
-                                        <a href="/newsletter" class="btn btn-outline-secondary">
-                                            <i class="fas fa-times" style="margin-right: 6px;"></i> Limpar
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="filters-buttons" style="display: flex; gap: 0.5rem; align-items: end;">
+                        <button type="submit" class="btn btn-secondary">
+                            <i class="fas fa-search" style="margin-right: 6px;"></i> Filtrar
+                        </button>
+                        <?php if (($search ?? '') || ($status ?? '')): ?>
+                            <a href="/newsletter" class="btn btn-outline-secondary">
+                                <i class="fas fa-times" style="margin-right: 6px;"></i> Limpar
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </form>
+            </div>
 
-                        <!-- Tabela -->
-                        <div class="table-responsive">
-                            <?php if (empty($cadastros)): ?>
-                                <div class="text-center py-4">
-                                    <div class="empty-state">
-                                        <i class="fas fa-inbox"></i>
-                                        <h4>Nenhum cadastro encontrado</h4>
-                                        <p class="text-muted">
-                                            <?php if (($search ?? '') || ($status ?? '')): ?>
-                                                Tente ajustar os filtros ou <a href="/newsletter">ver todos os cadastros</a>
-                                            <?php else: ?>
-                                                <a href="/newsletter/create" class="btn btn-primary">Cadastre o primeiro usuário</a>
-                                            <?php endif; ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            <?php else: ?>
-                                <table class="table table-bordered table-striped table-hover">
+            <!-- Tabela -->
+            <div class="table-responsive">
+                <?php if (empty($cadastros)): ?>
+                    <div class="text-center py-4">
+                        <div class="empty-state">
+                            <i class="fas fa-inbox fa-3x"></i>
+                            <h3>Nenhum cadastro encontrado</h3>
+                            <p class="text-muted">
+                                <?php if (($search ?? '') || ($status ?? '')): ?>
+                                    Tente ajustar os filtros ou <a href="/newsletter">ver todos os cadastros</a>
+                                <?php else: ?>
+                                    <a href="/newsletter/create" class="btn btn-primary">Cadastre o primeiro usuário</a>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <table class="data-table">
                                     <thead>
                                         <tr>
                                             <th width="60">ID</th>
@@ -300,15 +276,15 @@
                                                         <?= date('H:i', strtotime($cadastro['data_cadastro'])) ?>
                                                     </small>
                                                 </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group-vertical btn-group-sm">
+                                                <td>
+                                                    <div class="action-buttons">
                                                         <a href="/newsletter/edit/<?= $cadastro['id'] ?>" 
-                                                           class="btn btn-outline-primary btn-xs"
+                                                           class="btn btn-sm btn-secondary"
                                                            title="Editar">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <a href="/newsletter/delete/<?= $cadastro['id'] ?>" 
-                                                           class="btn btn-outline-danger btn-xs"
+                                                           class="btn btn-sm btn-danger"
                                                            onclick="return confirm('Tem certeza que deseja excluir este cadastro?\n\nEsta ação não pode ser desfeita.')"
                                                            title="Excluir">
                                                             <i class="fas fa-trash"></i>
@@ -317,88 +293,23 @@
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                    </table>
 
-                                <!-- Informações da tabela -->
-                                <div class="row mt-3">
-                                    <div class="col-sm-6">
-                                        <small class="text-muted">
-                                            Exibindo <?= count($cadastros) ?> cadastro(s)
-                                            <?php if (($search ?? '') || ($status ?? '')): ?>
-                                                (filtrado)
-                                            <?php endif; ?>
-                                        </small>
-                                    </div>
-                                    <div class="col-sm-6 text-right">
-                                        <small class="text-muted">
-                                            Última atualização: <?= date('d/m/Y H:i') ?>
-                                        </small>
-                                    </div>
-                                </div>
+                    <!-- Informações da tabela -->
+                    <div class="table-info" style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                        <small class="text-muted">
+                            Exibindo <?= count($cadastros) ?> cadastro(s)
+                            <?php if (($search ?? '') || ($status ?? '')): ?>
+                                (filtrado)
                             <?php endif; ?>
-                        </div>
+                        </small>
+                        <small class="text-muted">
+                            Última atualização: <?= date('d/m/Y H:i') ?>
+                        </small>
                     </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
 
-        <!-- Gráficos de Estatísticas -->
-        <?php if (!empty($estatisticas['interesses_populares']) || !empty($estatisticas['por_mes'])): ?>
-        <div class="row">
-            <?php if (!empty($estatisticas['interesses_populares'])): ?>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-heart"></i> Interesses Mais Populares</h3>
-                    </div>
-                    <div class="card-body">
-                        <?php foreach ($estatisticas['interesses_populares'] as $interesse => $count): ?>
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span><?= ucfirst($interesse) ?></span>
-                                    <span class="badge badge-primary"><?= $count ?></span>
-                                </div>
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-primary" 
-                                         style="width: <?= ($estatisticas['total'] > 0) ? ($count / $estatisticas['total']) * 100 : 0 ?>%">
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-            <?php endif; ?>
-            
-            <?php if (!empty($estatisticas['por_mes'])): ?>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> Cadastros por Mês</h3>
-                    </div>
-                    <div class="card-body">
-                        <?php 
-                        $maxCadastros = max(array_column($estatisticas['por_mes'], 'total'));
-                        foreach ($estatisticas['por_mes'] as $mes): 
-                        ?>
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span><?= date('m/Y', strtotime($mes['mes'] . '-01')) ?></span>
-                                    <span class="badge badge-success"><?= $mes['total'] ?></span>
-                                </div>
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar bg-success" 
-                                         style="width: <?= $maxCadastros > 0 ? ($mes['total'] / $maxCadastros) * 100 : 0 ?>%">
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
     </div>
-</section>
+</div>

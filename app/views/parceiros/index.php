@@ -1,16 +1,17 @@
-<div class="parceiros-main">
-    <div class="page-header">
-        <div class="header-left">
-            <h1>Gerenciar Parceiros</h1>
-            <p>Lista de todos os parceiros cadastrados no sistema</p>
+<div class="main-content">
+    <div class="dashboard-main">
+        <div class="page-header">
+            <div class="header-left">
+                <h1>Gerenciar Parceiros</h1>
+                <p>Lista de todos os parceiros cadastrados no sistema</p>
+            </div>
+            <div class="header-right">
+                <a href="<?= Router::url('dashboard/parceiros/cadastro') ?>" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Novo Parceiro
+                </a>
+            </div>
         </div>
-        <div class="header-right">
-            <a href="<?= Router::url('dashboard/parceiros/cadastro') ?>" class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Novo Parceiro
-            </a>
-        </div>
-    </div>
 
     <?php if (isset($_SESSION['flash_message'])): ?>
         <div class="alert alert-<?= $_SESSION['flash_type'] ?>">

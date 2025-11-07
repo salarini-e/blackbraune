@@ -1,16 +1,17 @@
-<div class="usuarios-main">
-    <div class="page-header">
-        <div class="header-left">
-            <h1>Gerenciar Usuários</h1>
-            <p>Lista de todos os usuários administradores do sistema</p>
+<div class="main-content">
+    <div class="dashboard-main">
+        <div class="page-header">
+            <div class="header-left">
+                <h1>Gerenciar Usuários</h1>
+                <p>Lista de todos os usuários administradores do sistema</p>
+            </div>
+            <div class="header-right">
+                <a href="<?= Router::url('dashboard/usuarios/cadastro') ?>" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Novo Usuário
+                </a>
+            </div>
         </div>
-        <div class="header-right">
-            <a href="<?= Router::url('dashboard/usuarios/cadastro') ?>" class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Novo Usuário
-            </a>
-        </div>
-    </div>
 
     <?php if (isset($_SESSION['flash_message'])): ?>
         <div class="alert alert-<?= $_SESSION['flash_type'] ?>">
