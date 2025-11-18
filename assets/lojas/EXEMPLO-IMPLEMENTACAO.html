@@ -1,0 +1,15 @@
+<!-- EXEMPLO: Como ficará com logos reais -->
+<!-- Substitua os cards de exemplo na home/index.php por esta estrutura quando tiver os logos -->
+
+<div class="lojas-logos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0;">
+    
+    <!-- Exemplo com logo real -->
+    <div class="loja-logo-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.1)'">
+        <img src="<?= Router::url('assets/lojas/nome-da-loja.png') ?>" 
+             alt="Nome da Loja" 
+             style="height: 120px; width: auto; object-fit: contain; margin-bottom: 1rem; border-radius: 10px; max-width: 100%;">
+    </div>
+    
+    <!-- Repita para cada loja -->
+    
+</div>

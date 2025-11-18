@@ -215,59 +215,67 @@
             <h2 class="section-title">Lojas Participantes</h2>
             <p class="section-subtitle">Conheça os estabelecimentos que fazem parte do movimento</p>
         </div>
-        <div class="lojas-grid">
-            <div class="loja-card">
-                <div class="loja-icon">
-                    <i class="fas fa-tshirt"></i>
+        
+        <div class="lojas-logos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0;">
+            <?php if (!empty($lojas) && count($lojas) > 0): ?>
+                <?php foreach ($lojas as $loja): ?>
+                    <div class="loja-logo-card" style="background: var(--dark-card); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--dark-lighter); text-align: center; transition: transform 0.3s ease, border-color 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--secondary-color)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--dark-lighter)'" <?php if (!empty($loja['website'])): ?>onclick="window.open('<?= htmlspecialchars($loja['website']) ?>', '_blank')"<?php endif; ?>>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; border-radius: var(--border-radius); overflow: hidden;">
+                            <?php if (!empty($loja['logo'])): ?>
+                                <img src="<?= Router::url('assets/img/uploads/' . $loja['logo']) ?>" 
+                                     alt="<?= htmlspecialchars($loja['nome']) ?>" 
+                                     style="max-width: 100%; max-height: 100px; width: auto; height: auto; object-fit: contain;">
+                            <?php else: ?>
+                                <i class="fas fa-store" style="color: var(--gray); font-size: 3rem;"></i>
+                            <?php endif; ?>
+                        </div>
+                        <p style="margin: 0; font-weight: 500; color: var(--text-color);"><?= htmlspecialchars($loja['nome']) ?></p>
+                        <?php if (!empty($loja['website'])): ?>
+                            <small style="color: var(--secondary-color); display: block; margin-top: 0.5rem;">
+                                <i class="fas fa-external-link-alt"></i>
+                                Clique para visitar
+                            </small>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <!-- Placeholders quando não há lojas cadastradas -->
+                <div class="loja-logo-card" style="background: var(--dark-card); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--dark-lighter); text-align: center; transition: transform 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--secondary-color)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--dark-lighter)'">
+                    <div style="height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: var(--dark-lighter); border-radius: var(--border-radius); color: var(--gray); font-size: 3rem;">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <p style="margin: 0; font-weight: 500; color: var(--text-color);">Em breve</p>
+                    <small style="color: var(--gray);">Lojas participantes</small>
                 </div>
-                <h3>Moda & Estilo</h3>
-                <p>Boutiques e lojas de vestuário</p>
-                <a href="#" class="loja-link">Ver Lojas</a>
-            </div>
-            <div class="loja-card">
-                <div class="loja-icon">
-                    <i class="fas fa-utensils"></i>
+                
+                <div class="loja-logo-card" style="background: var(--dark-card); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--dark-lighter); text-align: center; transition: transform 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--secondary-color)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--dark-lighter)'">
+                    <div style="height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: var(--dark-lighter); border-radius: var(--border-radius); color: var(--gray); font-size: 3rem;">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <p style="margin: 0; font-weight: 500; color: var(--text-color);">Em breve</p>
+                    <small style="color: var(--gray);">Mais estabelecimentos</small>
                 </div>
-                <h3>Gastronomia</h3>
-                <p>Restaurantes e cafeterias</p>
-                <a href="#" class="loja-link">Ver Estabelecimentos</a>
-            </div>
-            <div class="loja-card">
-                <div class="loja-icon">
-                    <i class="fas fa-laptop"></i>
+                
+                <div class="loja-logo-card" style="background: var(--dark-card); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--dark-lighter); text-align: center; transition: transform 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--secondary-color)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--dark-lighter)'">
+                    <div style="height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: var(--dark-lighter); border-radius: var(--border-radius); color: var(--gray); font-size: 3rem;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <p style="margin: 0; font-weight: 500; color: var(--text-color);">Seja um parceiro</p>
+                    <small style="color: var(--gray);">Junte-se ao movimento</small>
                 </div>
-                <h3>Tecnologia</h3>
-                <p>Lojas de eletrônicos e informática</p>
-                <a href="#" class="loja-link">Ver Lojas</a>
-            </div>
-            <div class="loja-card">
-                <div class="loja-icon">
-                    <i class="fas fa-spa"></i>
-                </div>
-                <h3>Beleza & Bem-estar</h3>
-                <p>Salões e clínicas estéticas</p>
-                <a href="#" class="loja-link">Ver Estabelecimentos</a>
-            </div>
-            <div class="loja-card">
-                <div class="loja-icon">
-                    <i class="fas fa-home"></i>
-                </div>
-                <h3>Casa & Decoração</h3>
-                <p>Móveis e artigos para casa</p>
-                <a href="#" class="loja-link">Ver Lojas</a>
-            </div>
-            <div class="loja-card">
-                <div class="loja-icon">
-                    <i class="fas fa-shopping-bag"></i>
-                </div>
-                <h3>Variedades</h3>
-                <p>Diversos produtos e serviços</p>
-                <a href="#" class="loja-link">Ver Todos</a>
-            </div>
+            <?php endif; ?>
         </div>
-        <div class="lojas-cta">
-            <p>Sua loja ainda não está participando?</p>
-            <a href="#cadastro" class="btn btn-secondary" style="background-color: var(--secondary-color); color: var(--primary-color);">Cadastre sua Loja</a>
+            
+            
+        </div>
+      
+        
+        <div class="lojas-cta" style="text-align: center; margin-top: 3rem;">
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-color);">Sua loja ainda não está participando?</p>
+            <a href="#cadastro" class="btn btn-secondary" style="background-color: var(--secondary-color); color: var(--primary-color); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <i class="fas fa-store" style="margin-right: 0.5rem;"></i>
+                Cadastre sua Loja
+            </a>
         </div>
     </div>
 </section>
@@ -308,17 +316,6 @@
                 <div class="form-group">
                     <label for="cidade">Cidade</label>
                     <input type="text" id="cidade" name="cidade" value="Nova Friburgo">
-                </div>
-                <div class="form-group">
-                    <label for="interesses">Áreas de Interesse</label>
-                    <select id="interesses" name="interesses[]" multiple>
-                        <option value="moda">Moda & Estilo</option>
-                        <option value="gastronomia">Gastronomia</option>
-                        <option value="tecnologia">Tecnologia</option>
-                        <option value="beleza">Beleza & Bem-estar</option>
-                        <option value="casa">Casa & Decoração</option>
-                        <option value="cultura">Cultura & Eventos</option>
-                    </select>
                 </div>
                 <div class="form-group checkbox-group">
                     <label class="checkbox-label">
@@ -383,9 +380,20 @@
             </div>
             <div class="footer-section">
                 <h4>Contato</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Avenida Alberto Braune, Centro<br>Nova Friburgo - RJ</p>
-                <p><i class="fas fa-envelope"></i> contato@blackbraune.com.br</p>
-                <p><i class="fas fa-phone"></i> (22) 99999-9999</p>
+                <?php foreach ($contatos as $contato): ?>
+                    <p>
+                        <?php if ($contato['icone']): ?>
+                            <i class="<?= htmlspecialchars($contato['icone']) ?>"></i> 
+                        <?php endif; ?>
+                        <?php if ($contato['link']): ?>
+                            <a href="<?= htmlspecialchars($contato['link']) ?>" class="footer-contact-link">
+                                <?= $contato['valor'] ?>
+                            </a>
+                        <?php else: ?>
+                            <?= $contato['valor'] ?>
+                        <?php endif; ?>
+                    </p>
+                <?php endforeach; ?>
             </div>
             <div class="footer-section">
                 <h4>Parceiros</h4>
@@ -399,10 +407,11 @@
             <div class="footer-section">
                 <h4>Redes Sociais</h4>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <?php foreach ($redesSociais as $rede): ?>
+                        <a href="<?= htmlspecialchars($rede['link']) ?>" target="_blank" title="<?= htmlspecialchars($rede['titulo']) ?>">
+                            <i class="<?= htmlspecialchars($rede['icone']) ?>"></i>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

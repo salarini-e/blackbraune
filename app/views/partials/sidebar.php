@@ -44,12 +44,18 @@
                     Newsletter
                 </a>
             </li>
-            <!-- <li class="sidebar-nav-item">
-                <a href="#" class="sidebar-nav-link">
+            <li class="sidebar-nav-item">
+                <a href="<?= Router::url('dashboard/lojas') ?>" class="sidebar-nav-link <?= (strpos($page, 'lojas') !== false) ? 'active' : '' ?>">
                     <i class="fas fa-store"></i>
                     Lojas
                 </a>
-            </li> -->
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="<?= Router::url('contactos') ?>" class="sidebar-nav-link <?= (strpos($page, 'contactos') !== false) ? 'active' : '' ?>">
+                    <i class="fas fa-address-book"></i>
+                    Contatos
+                </a>
+            </li>
             <li class="sidebar-nav-item">
                 <a href="<?= Router::url('dashboard/usuarios') ?>" class="sidebar-nav-link <?= (strpos($page, 'usuarios') !== false) ? 'active' : '' ?>">
                     <i class="fas fa-users"></i>

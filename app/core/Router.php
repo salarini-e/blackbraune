@@ -75,6 +75,26 @@ class Router
             'newsletter/toggle-newsletter' => ['controller' => 'NewsletterController', 'method' => 'toggleNewsletter'],
             'newsletter/export' => ['controller' => 'NewsletterController', 'method' => 'export'],
             
+            // Rotas de contatos (dashboard)
+            'contactos' => ['controller' => 'ContactosController', 'method' => 'index'],
+            'contactos/index' => ['controller' => 'ContactosController', 'method' => 'index'],
+            'contactos/create' => ['controller' => 'ContactosController', 'method' => 'create'],
+            'contactos/store' => ['controller' => 'ContactosController', 'method' => 'store'],
+            'contactos/edit' => ['controller' => 'ContactosController', 'method' => 'edit'],
+            'contactos/update' => ['controller' => 'ContactosController', 'method' => 'update'],
+            'contactos/delete' => ['controller' => 'ContactosController', 'method' => 'delete'],
+            'contactos/updateOrdem' => ['controller' => 'ContactosController', 'method' => 'updateOrdem'],
+            
+            // Rotas de lojas (dashboard)
+            'dashboard/lojas' => ['controller' => 'LojasController', 'method' => 'index'],
+            'dashboard/lojas/index' => ['controller' => 'LojasController', 'method' => 'index'],
+            'dashboard/lojas/create' => ['controller' => 'LojasController', 'method' => 'create'],
+            'dashboard/lojas/store' => ['controller' => 'LojasController', 'method' => 'store'],
+            'dashboard/lojas/edit' => ['controller' => 'LojasController', 'method' => 'edit'],
+            'dashboard/lojas/update' => ['controller' => 'LojasController', 'method' => 'update'],
+            'dashboard/lojas/delete' => ['controller' => 'LojasController', 'method' => 'delete'],
+            'dashboard/lojas/toggle' => ['controller' => 'LojasController', 'method' => 'toggleStatus'],
+            
             // Rotas de autenticação
             'login' => ['controller' => 'AuthController', 'method' => 'login'],
             'auth/login' => ['controller' => 'AuthController', 'method' => 'login'],
@@ -153,6 +173,20 @@ class Router
                     } else {
                         $this->currentMethod = 'index';
                     }
+                } elseif (isset($urlArray[1]) && $urlArray[1] === 'lojas') {
+                    $this->currentController = 'LojasController';
+                    
+                    // Se tem método específico
+                    if (isset($urlArray[2]) && !empty($urlArray[2])) {
+                        $method = $urlArray[2];
+                        if (method_exists('LojasController', $method)) {
+                            $this->currentMethod = $method;
+                            // Parâmetros adicionais (como ID)
+                            $this->params = array_slice($urlArray, 3);
+                        }
+                    } else {
+                        $this->currentMethod = 'index';
+                    }
                 } else {
                     // Outras rotas do dashboard
                     $this->currentController = 'DashboardController';
@@ -175,6 +209,20 @@ class Router
                         } else {
                             $this->currentMethod = 'index';
                         }
+                    } elseif ($urlArray[0] === 'contactos') {
+                        $this->currentController = 'ContactosController';
+                        
+                        // Se tem método específico
+                        if (isset($urlArray[1]) && !empty($urlArray[1])) {
+                            $method = $urlArray[1];
+                            if (method_exists('ContactosController', $method)) {
+                                $this->currentMethod = $method;
+                                // Parâmetros adicionais (como ID)
+                                $this->params = array_slice($urlArray, 2);
+                            }
+                        } else {
+                            $this->currentMethod = 'index';
+                        }
                     } else {
                         $controller = ucfirst($urlArray[0]) . 'Controller';
                         if (class_exists($controller)) {
@@ -184,7 +232,7 @@ class Router
                     }
                 }
                 
-                if (!empty($urlArray[1]) && $this->currentController !== 'ProgramacoesController') {
+                if (!empty($urlArray[1]) && $this->currentController !== 'ProgramacoesController' && $this->currentController !== 'ContactosController') {
                     $method = $urlArray[1];
                     if (method_exists($this->currentController, $method)) {
                         $this->currentMethod = $method;
