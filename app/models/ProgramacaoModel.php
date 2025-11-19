@@ -44,7 +44,14 @@ class ProgramacaoModel {
     
     public function getById($id) {
         $sql = "SELECT * FROM programacoes WHERE id = ?";
-        return Database::fetch($sql, [$id]);
+        error_log("Debug ProgramacaoModel::getById - ID recebido: " . $id);
+        error_log("Debug ProgramacaoModel::getById - Tipo do ID: " . gettype($id));
+        error_log("Debug ProgramacaoModel::getById - SQL: " . $sql);
+        
+        $result = Database::fetch($sql, [$id]);
+        error_log("Debug ProgramacaoModel::getById - Resultado: " . ($result ? json_encode($result) : 'NULL'));
+        
+        return $result;
     }
     
     public function create($data) {

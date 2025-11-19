@@ -178,6 +178,11 @@ class ProgramacoesController extends Controller {
         error_log("Debug ProgramacoesController::delete - ID recebido: " . $id);
         error_log("Debug ProgramacoesController::delete - Parâmetros: " . print_r($this->params, true));
         
+        // Listar todos os IDs disponíveis para debug
+        $todasProgramacoes = $this->programacaoModel->getAll();
+        $idsDisponiveis = array_column($todasProgramacoes, 'id');
+        error_log("Debug ProgramacoesController::delete - IDs disponíveis na base: " . implode(', ', $idsDisponiveis));
+        
         // Verificar autenticação
         AuthController::requireAuth();
         
