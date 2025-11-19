@@ -211,10 +211,42 @@ function confirmDelete() {
         const deleteUrl = '<?= Router::url('programacoes/delete/') ?>' + deleteId;
         console.log('URL de delete:', deleteUrl);
         console.log('ID para deletar:', deleteId);
+        console.log('Base URL:', '<?= BASE_URL ?>');
         
-        // Confirmar novamente antes de redirecionar
+        // Confirmar novamente antes de fazer requisição
         if (confirm('Confirma a exclusão? ID: ' + deleteId)) {
-            window.location.href = deleteUrl;
+            console.log('Fazendo requisição para:', deleteUrl);
+            
+            // Usar fetch para debug melhor
+            fetch(deleteUrl, {
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'text/html',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response URL:', response.url);
+                console.log('Response OK:', response.ok);
+                console.log('Response redirected:', response.redirected);
+                
+                if (response.ok || response.redirected || response.status === 302) {
+                    console.log('Redirecionando para programacoes...');
+                    window.location.href = '<?= Router::url('programacoes') ?>';
+                } else {
+                    console.error('Erro na resposta:', response);
+                    return response.text().then(text => {
+                        console.log('Response body:', text);
+                        alert('Erro ao excluir. Ver console para detalhes.');
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Erro na requisição fetch:', error);
+                alert('Erro ao excluir: ' + error.message);
+            });
         }
     } else {
         alert('Erro: ID não encontrado');
