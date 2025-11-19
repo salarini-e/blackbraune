@@ -15,6 +15,7 @@ url:
 #url:
 #  base: "http://localhost:8000/"
 #  assets: "http://localhost:8000/assets/"
+
 # Configurações de banco de dados
 
 database:
