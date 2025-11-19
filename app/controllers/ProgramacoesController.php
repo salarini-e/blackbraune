@@ -174,28 +174,40 @@ class ProgramacoesController extends Controller {
     }
     
     public function delete($id) {
+        // Debug
+        error_log("Debug ProgramacoesController::delete - ID recebido: " . $id);
+        error_log("Debug ProgramacoesController::delete - Parâmetros: " . print_r($this->params, true));
+        
         // Verificar autenticação
         AuthController::requireAuth();
         
         try {
             $programacao = $this->programacaoModel->getById($id);
+            error_log("Debug ProgramacoesController::delete - Programação encontrada: " . ($programacao ? 'SIM' : 'NÃO'));
             
             if (!$programacao) {
+                error_log("Debug ProgramacoesController::delete - Programação não encontrada para ID: " . $id);
                 throw new Exception('Programação não encontrada.');
             }
             
-            if ($this->programacaoModel->delete($id)) {
+            $resultado = $this->programacaoModel->delete($id);
+            error_log("Debug ProgramacoesController::delete - Resultado da exclusão: " . ($resultado ? 'SUCESSO' : 'FALHA'));
+            
+            if ($resultado) {
                 $_SESSION['flash_message'] = 'Programação excluída com sucesso!';
                 $_SESSION['flash_type'] = 'success';
+                error_log("Debug ProgramacoesController::delete - Flash message definida: sucesso");
             } else {
                 throw new Exception('Erro ao excluir programação.');
             }
             
         } catch (Exception $e) {
+            error_log("Debug ProgramacoesController::delete - Erro: " . $e->getMessage());
             $_SESSION['flash_message'] = 'Erro: ' . $e->getMessage();
             $_SESSION['flash_type'] = 'error';
         }
         
+        error_log("Debug ProgramacoesController::delete - Redirecionando para: " . Router::url('programacoes'));
         header('Location: ' . Router::url('programacoes'));
         exit;
     }
