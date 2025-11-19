@@ -207,7 +207,17 @@ function closeModal() {
 
 function confirmDelete() {
     if (deleteId) {
-        window.location.href = '<?= Router::url('programacoes/delete/') ?>' + deleteId;
+        // Debug da URL
+        const deleteUrl = '<?= Router::url('programacoes/delete/') ?>' + deleteId;
+        console.log('URL de delete:', deleteUrl);
+        console.log('ID para deletar:', deleteId);
+        
+        // Confirmar novamente antes de redirecionar
+        if (confirm('Confirma a exclusão? ID: ' + deleteId)) {
+            window.location.href = deleteUrl;
+        }
+    } else {
+        alert('Erro: ID não encontrado');
     }
 }
 
