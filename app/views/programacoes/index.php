@@ -5,10 +5,16 @@
                 <h1>Programação</h1>
                 <p>Gerencie a programação dos eventos</p>
             </div>
-            <a href="<?= Router::url('programacoes/create') ?>" class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Nova Programação
-            </a>
+            <div class="header-buttons">
+                <a href="<?= Router::url('programacoes/create') ?>" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Nova Programação
+                </a>
+                <button onclick="confirmDeleteAll()" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                    Limpar Todos
+                </button>
+            </div>
         </div>
 
         <!-- Stats Cards -->
@@ -253,6 +259,45 @@ function confirmDelete() {
     }
 }
 
+function confirmDeleteAll() {
+    if (confirm('⚠️ ATENÇÃO: Esta ação irá excluir TODOS os registros de programação!\n\nEsta ação é IRREVERSÍVEL. Tem certeza absoluta que deseja continuar?')) {
+        if (confirm('CONFIRMAÇÃO FINAL: Todos os dados serão perdidos permanentemente. Continuar?')) {
+            console.log('Limpando todos os registros...');
+            
+            const deleteAllUrl = '<?= Router::url('programacoes/deleteAll') ?>';
+            console.log('URL para limpar todos:', deleteAllUrl);
+            
+            fetch(deleteAllUrl, {
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'text/html',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response OK:', response.ok);
+                
+                if (response.ok || response.redirected || response.status === 302) {
+                    console.log('Redirecionando após limpeza...');
+                    window.location.href = '<?= Router::url('programacoes') ?>';
+                } else {
+                    console.error('Erro na resposta:', response);
+                    return response.text().then(text => {
+                        console.log('Response body:', text);
+                        alert('Erro ao limpar registros. Ver console para detalhes.');
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+                alert('Erro ao limpar registros: ' + error.message);
+            });
+        }
+    }
+}
+
 function toggleStatus(id) {
     if (confirm('Tem certeza que deseja alterar o status desta programação?')) {
         window.location.href = '<?= Router::url('programacoes/toggle/') ?>' + id;
@@ -294,4 +339,14 @@ window.addEventListener('click', function(event) {
 .badge-workshop { background: rgba(26, 188, 156, 0.2); color: #7fb3d3; }
 .badge-palestra { background: rgba(52, 73, 94, 0.2); color: #aeb6bf; }
 .badge-outro { background: rgba(149, 165, 166, 0.2); color: #bdc3c7; }
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-buttons .btn {
+    white-space: nowrap;
+}
 </style>

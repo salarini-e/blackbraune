@@ -116,6 +116,17 @@ class ProgramacaoModel {
         }
     }
     
+    public function deleteAll() {
+        $sql = "DELETE FROM programacoes";
+        try {
+            Database::execute($sql);
+            return true;
+        } catch (Exception $e) {
+            error_log("Erro ao limpar tabela programacoes: " . $e->getMessage());
+            return false;
+        }
+    }
+    
     public function toggleStatus($id) {
         $sql = "UPDATE programacoes SET ativo = CASE WHEN ativo = 1 THEN 0 ELSE 1 END, updated_at = ? WHERE id = ?";
         try {

@@ -217,6 +217,33 @@ class ProgramacoesController extends Controller {
         exit;
     }
     
+    public function deleteAll() {
+        // Verificar autenticação
+        AuthController::requireAuth();
+        
+        try {
+            error_log("Debug ProgramacoesController::deleteAll - Iniciando limpeza total");
+            
+            $resultado = $this->programacaoModel->deleteAll();
+            error_log("Debug ProgramacoesController::deleteAll - Resultado: " . ($resultado ? 'SUCESSO' : 'FALHA'));
+            
+            if ($resultado) {
+                $_SESSION['flash_message'] = 'Todos os registros de programação foram excluídos!';
+                $_SESSION['flash_type'] = 'success';
+            } else {
+                throw new Exception('Erro ao excluir todos os registros.');
+            }
+            
+        } catch (Exception $e) {
+            error_log("Debug ProgramacoesController::deleteAll - Erro: " . $e->getMessage());
+            $_SESSION['flash_message'] = 'Erro: ' . $e->getMessage();
+            $_SESSION['flash_type'] = 'error';
+        }
+        
+        header('Location: ' . Router::url('programacoes'));
+        exit;
+    }
+    
     public function toggleStatus($id) {
         // Verificar autenticação
         AuthController::requireAuth();
