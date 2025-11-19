@@ -8,13 +8,15 @@ app:
   timezone: "America/Sao_Paulo"
 
 # Configurações de URL
-# url:
-#   base: "https://blackbraune.esalarini.com.br/"
-#   assets: "https://blackbraune.esalarini.com.br/assets/"
 url:
-  base: "http://localhost:8000/"
-  assets: "http://localhost:8000/assets/"
+   base: "https://blackbraune.acianf.com.br/"
+   assets: "https://blackbraune.acianf.com.br/assets/"
+
+#url:
+#  base: "http://localhost:8000/"
+#  assets: "http://localhost:8000/assets/"
 # Configurações de banco de dados
+
 database:
   # Opções: sqlite, mysql
   driver: "sqlite"
