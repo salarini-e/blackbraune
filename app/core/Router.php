@@ -60,6 +60,7 @@ class Router
             'programacoes/edit' => ['controller' => 'ProgramacoesController', 'method' => 'edit'],
             'programacoes/update' => ['controller' => 'ProgramacoesController', 'method' => 'update'],
             'programacoes/delete' => ['controller' => 'ProgramacoesController', 'method' => 'delete'],
+            'programacoes/deleteAll' => ['controller' => 'ProgramacoesController', 'method' => 'deleteAll'],
             'programacoes/toggle' => ['controller' => 'ProgramacoesController', 'method' => 'toggleStatus'],
             'programacoes/api' => ['controller' => 'ProgramacoesController', 'method' => 'api'],
             
